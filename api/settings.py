@@ -25,7 +25,9 @@ SECRET_KEY = 'y8unhb%gdu-+u5o9e(_m0%6fc6yw4*6!k3#@*ucs^$!k^bl*_z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'api-app-viagem.herokuapp.com',
+]
 
 
 # Application definition
