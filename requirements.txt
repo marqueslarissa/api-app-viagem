@@ -1,5 +1,6 @@
 django
 django-heroku
+gunicorn
 djangorestframework
 markdown
 django-filter
