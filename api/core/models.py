@@ -2,7 +2,6 @@ from django.db import models
 
 
 class Voo(models.Model):
-    id = models.CharField(max_length=256, primary_key=True)
     precoUnit = models.CharField(max_length=256)
     precoTotal = models.CharField(max_length=256)
     direto = models.CharField(max_length=256)
@@ -21,7 +20,6 @@ class Voo(models.Model):
     qtd = models.IntegerField()
     # 1 = voo, 2 = hotel
     tipo = 1
-    storageKey = models.CharField(max_length=256)
 
     def __class__ (self):
         return self

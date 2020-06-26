@@ -7,5 +7,5 @@ from .models import Voo
 class VooSerializer(serializers.ModelSerializer):
     class Meta:
         model = Voo
-        fields = ['id', 'precoUnit', 'precoTotal', 'direto', 'companhiaIda', 'origemIda', 'origemSiglaIda', 'destinoIda', 'destinoSiglaIda', 'dataIda',
-                  'companhiaVolta', 'origemVolta', 'origemSiglaVolta', 'destinoVolta', 'destinoSiglaVolta', 'dataVolta', 'qtd', 'tipo', 'storageKey']
+        fields = ['precoUnit', 'precoTotal', 'direto', 'companhiaIda', 'origemIda', 'origemSiglaIda', 'destinoIda', 'destinoSiglaIda', 'dataIda',
+                  'companhiaVolta', 'origemVolta', 'origemSiglaVolta', 'destinoVolta', 'destinoSiglaVolta', 'dataVolta', 'qtd', 'tipo']
