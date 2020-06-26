@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'api-app-viagem.herokuapp.com',
+    'localhost',
 ]
 
 
