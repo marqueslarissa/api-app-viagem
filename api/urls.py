@@ -17,11 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from core.views import VooViewSet
+from core import views
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
-router.register(r'voos', VooViewSet)
+router.register(r'cliente', views.ClienteViewSet, basename='cliente')
+#router.register(r'clientes/<int:pk>/', views.cliente_detail, basename='cliente_detail')
+router.register(r'hotel', views.HotelViewSet, basename='hotel')
+router.register(r'voos', views.VooViewSet, basename='voo')
+router.register(r'reserva', views.ReservaViewSet, basename='reserva')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

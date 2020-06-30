@@ -4,3 +4,5 @@ gunicorn
 djangorestframework
 markdown
 django-filter
+psycopg2-binary
+dj-database-url
