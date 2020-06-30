@@ -16,15 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-
 from core import views
+from rest_auth.views import LoginView
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
+# router.register(r'')
 router.register(r'cliente', views.ClienteViewSet, basename='cliente')
-#router.register(r'clientes/<int:pk>/', views.cliente_detail, basename='cliente_detail')
 router.register(r'hotel', views.HotelViewSet, basename='hotel')
 router.register(r'voos', views.VooViewSet, basename='voo')
+router.register(r'reserva', views.ReservaViewSet, basename='reserva')
 router.register(r'reserva', views.ReservaViewSet, basename='reserva')
 
 # Wire up our API using automatic URL routing.
@@ -33,4 +34,9 @@ urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-]
+    path('rest-auth/', include('rest_auth.urls')),
+
+    path('test_auth/', views.TestAuthView.as_view(), name='test_auth', ),
+    path('rest-auth/logout/', views.LogoutViewEx.as_view(), name='rest_logout', ),
+    path('rest-auth/login/', LoginView.as_view(), name='rest_login', )
+] #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

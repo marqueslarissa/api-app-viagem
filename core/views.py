@@ -7,10 +7,25 @@ from rest_framework.parsers import JSONParser
 
 from rest_framework.response import Response
 
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+from rest_framework.views import APIView
+from rest_auth.views import LogoutView
 from .models import Cliente, Reserva, Hotel, Voo
 from .serializers import ClienteSerializer, ReservaSerializer, HotelSerializer, VooSerializer
 
 #ViewSets define the view behavior.
+class TestAuthView(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, format=None):
+        return Response("Hello {0}!".format(request.user))
+
+class LogoutViewEx(LogoutView):
+    authentication_classes = (TokenAuthentication,)
+
 class ClienteViewSet(viewsets.ModelViewSet):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
