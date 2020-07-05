@@ -19,9 +19,6 @@ class Reserva(models.Model):
     preco_total = models.CharField(max_length=32)
     data_pagamento = models.DateField(auto_now_add=True)
 
-    def __class__ (self):
-        return self
-
 class Hotel(models.Model):
     id_quarto = models.UUIDField(default=uuid.uuid4, primary_key=True)
     quarto = models.CharField(max_length=255)
@@ -38,9 +35,6 @@ class Hotel(models.Model):
     quantidade_quarto = models.CharField(max_length=255)
     # 1 = voo, 2 = hotel
     tipo = 2
-
-    def __class__ (self):
-        return self
 
 class Voo(models.Model):
     id_voo = models.UUIDField(default=uuid.uuid4, primary_key=True)
@@ -62,6 +56,3 @@ class Voo(models.Model):
     quantidade_passagem = models.IntegerField()
     # 1 = voo, 2 = hotel
     tipo = 1
-
-    def __class__ (self):
-        return self
