@@ -27,7 +27,7 @@ router.register(r'cliente', views.ClienteViewSet, basename='cliente')
 router.register(r'hotel', views.HotelViewSet, basename='hotel')
 router.register(r'voos', views.VooViewSet, basename='voo')
 router.register(r'reserva', views.ReservaViewSet, basename='reserva')
-router.register(r'reserva', views.ReservaViewSet, basename='reserva')
+
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
