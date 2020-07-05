@@ -79,7 +79,7 @@ class ReservaViewSet(viewsets.ModelViewSet):
     serializer_class = ReservaSerializer
 
     @csrf_exempt
-    def list(request):
+    def list(self, request):
         """
         Lista todas as reservas, ou cria uma nova reserva.
         """
@@ -97,7 +97,7 @@ class ReservaViewSet(viewsets.ModelViewSet):
             return Response(serializer.errors, status=400)
 
     @csrf_exempt
-    def detail(request, pk):
+    def detail(self, request, pk):
         """
         Retrieve, update or delete uma reserva.
         """ 

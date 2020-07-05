@@ -100,7 +100,7 @@ if ON_HEROKU:
     # DATABASE_URL = 'postgresql://<postgresql>'
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+            'ENGINE': 'django.db.backends.postgresql', 
             'NAME': 'dbphe2orf682ou',                     
             'USER': 'qceietrikcmfpx',
             'PASSWORD': '7122ba62879d194b0800b2526f236a5da5958b7481d8886562d8e782e78b82f3',

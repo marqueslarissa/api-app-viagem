@@ -20,6 +20,7 @@ from core import views
 from rest_auth.views import LoginView
 from rest_auth.registration.views import RegisterView
 
+
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 # router.register(r'')
@@ -35,8 +36,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('rest-auth/', include('rest_auth.urls')),
-
     path('test_auth/', views.TestAuthView.as_view(), name='test_auth', ),
     path('rest-auth/logout/', views.LogoutViewEx.as_view(), name='rest_logout', ),
     path('rest-auth/login/', LoginView.as_view(), name='rest_login', ),
