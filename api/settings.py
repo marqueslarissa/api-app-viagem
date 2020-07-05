@@ -98,12 +98,13 @@ if ON_HEROKU:
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2', 
             'NAME': 'dbphe2orf682ou',                     
-            'USER': 'tdgxzbdoalkpcp',
-            'PASSWORD': 'c7eeedc2ff48d378c1ee6c04a4e6940290ead01e7fb6f2cd77c8268cb1d311ea',
+            'USER': 'qceietrikcmfpx',
+            'PASSWORD': '7122ba62879d194b0800b2526f236a5da5958b7481d8886562d8e782e78b82f3',
             'HOST': 'ec2-35-173-94-156.compute-1.amazonaws.com', # Or something like this
             'PORT': '5432',                     
         }
     }
+    DATABASES['default']['engine']= dj_database_url.config(conn_max_age=600, ssl_require=True)
 else:
     DATABASES = {
         'default': {
@@ -111,8 +112,7 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    DATABASES['default']['engine']= dj_database_url.config(conn_max_age=600)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

@@ -14,6 +14,7 @@ class Cliente(models.Model):
 
 class Reserva(models.Model):
     id_reserva = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    nome_pacote = models.CharField(max_length=255)
     data_compra = models.DateField(auto_now_add=True)
     preco_total = models.CharField(max_length=32)
     data_pagamento = models.DateField(auto_now_add=True)
