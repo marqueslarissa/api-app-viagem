@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dj_database_url
-
+from decouple import config 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -93,30 +93,37 @@ WSGI_APPLICATION = 'api.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-ON_HEROKU = os.environ.get('ON_HEROKU')
-HEROKU_SERVER = os.environ.get('HEROKU_SERVER')
 
-if ON_HEROKU:
-    # DATABASE_URL = 'postgresql://<postgresql>'
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql', 
-            'NAME': 'dbphe2orf682ou',                     
-            'USER': 'qceietrikcmfpx',
-            'PASSWORD': '7122ba62879d194b0800b2526f236a5da5958b7481d8886562d8e782e78b82f3',
-            'HOST': 'ec2-35-173-94-156.compute-1.amazonaws.com', # Or something like this
-            'PORT': '5432',                     
-        }
-    }
-    DATABASES['default']['engine']= dj_database_url.config(conn_max_age=600, ssl_require=True)
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-    DATABASES['default']['engine']= dj_database_url.config(conn_max_age=600)
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+}
+
+# ON_HEROKU = os.environ.get('ON_HEROKU')
+# HEROKU_SERVER = os.environ.get('HEROKU_SERVER')
+
+# if ON_HEROKU:
+#     # DATABASE_URL = 'postgresql://<postgresql>'
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql', 
+#             'NAME': 'dbphe2orf682ou',                     
+#             'USER': 'qceietrikcmfpx',
+#             'PASSWORD': '7122ba62879d194b0800b2526f236a5da5958b7481d8886562d8e782e78b82f3',
+#             'HOST': 'ec2-35-173-94-156.compute-1.amazonaws.com', # Or something like this
+#             'PORT': '5432',                     
+#         }
+#     }
+#     DATABASES['default']['engine']= dj_database_url.config(conn_max_age=600, ssl_require=True)
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         }
+#     }
+#     DATABASES['default']['engine']= dj_database_url.config(conn_max_age=600)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
