@@ -38,5 +38,7 @@ urlpatterns = [
 
     path('test_auth/', views.TestAuthView.as_view(), name='test_auth', ),
     path('rest-auth/logout/', views.LogoutViewEx.as_view(), name='rest_logout', ),
-    path('rest-auth/login/', LoginView.as_view(), name='rest_login', )
-] #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('rest-auth/login/', LoginView.as_view(), name='rest_login', ),
+    path('rest-auth/', include('rest_auth.urls')),
+    path('rest-auth/registration/', include('rest_auth.registration.urls')),
+] #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) -- https://docs.djangoproject.com/pt-br/3.0/howto/static-files/
