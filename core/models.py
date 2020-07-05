@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+
 class Cliente(models.Model):
     id_cliente = models.UUIDField(default=uuid.uuid4, primary_key=True)
     primeiro_nome = models.CharField(max_length=64)

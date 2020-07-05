@@ -92,42 +92,27 @@ WSGI_APPLICATION = 'api.wsgi.application'
 ON_HEROKU = os.environ.get('ON_HEROKU')
 HEROKU_SERVER = os.environ.get('HEROKU_SERVER')
 
-# if ON_HEROKU:
-
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#             'NAME': 'postgresql',
-#         }
-#     }
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#             'USER': '',
-#             'PASSWORD': '',
-#             'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-#             'PORT': '',  
-#         }
-#     }
-
 if ON_HEROKU:
-    DATABASE_URL = 'postgresql://<postgresql>'
+    # DATABASE_URL = 'postgresql://<postgresql>'
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+            'NAME': 'dbphe2orf682ou',                     
+            'USER': 'tdgxzbdoalkpcp',
+            'PASSWORD': 'c7eeedc2ff48d378c1ee6c04a4e6940290ead01e7fb6f2cd77c8268cb1d311ea',
+            'HOST': 'ec2-35-173-94-156.compute-1.amazonaws.com', # Or something like this
+            'PORT': '5432',                     
+        }
+    }
 else:
-    DATABASE_URL = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
-DATABASES = {'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-# DATABASE_URL = os.environ['DATABASE_URL']
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -173,11 +158,12 @@ STATICFILES_DIRS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
