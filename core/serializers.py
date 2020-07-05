@@ -10,7 +10,7 @@ class ClienteSerializer(serializers.ModelSerializer):
 class ReservaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reserva
-        fields = ['id_reserva', 'data_compra', 'preco_total', 'data_pagamento']
+        fields = ['id_reserva', 'nome_pacote', 'data_compra', 'preco_total', 'data_pagamento']
 
 class HotelSerializer(serializers.ModelSerializer):
     class Meta:
