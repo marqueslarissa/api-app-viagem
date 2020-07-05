@@ -123,6 +123,9 @@ class ReservaViewSet(viewsets.ModelViewSet):
             return Response(status=204)
 
 class HotelViewSet(viewsets.ModelViewSet):
+    queryset = Hotel.objects.all()
+    serializer_class = HotelSerializer
+
     @csrf_exempt
     def list(self, request):
         """
