@@ -22,10 +22,11 @@ class Reserva(models.Model):
     class Meta:
         ordering = ['id']
         constraints = [
-            models.UniqueConstraint(fields=['id', 'customer'], name='reserva_constraint')
+            models.UniqueConstraint(fields=['id', 'customer'], name='reserva_cliente_constraint')
         ]
 
 class Hotel(models.Model):
+    pacote = models.ForeignKey('core.Reserva', on_delete=models.CASCADE)
     quarto = models.CharField(max_length=255)
     quantidade_adulto = models.CharField(max_length=255)
     quantidade_crianca = models.CharField(max_length=255)
@@ -42,6 +43,9 @@ class Hotel(models.Model):
     tipo = 2
     class Meta:
         ordering = ['id']
+        constraints = [
+            models.UniqueConstraint(fields=['id', 'pacote'], name='hotel_reserva_constraint')
+        ]
 
 class Voo(models.Model):
     preco_unitario = models.DecimalField(max_digits=10, decimal_places=2)
