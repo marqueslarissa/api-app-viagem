@@ -1,6 +1,0 @@
-language: python
-python:
-  - "3.7"
-deploy:
-  provider: heroku:git.heroku.com/api-app-viagem.git
-  api_key: 253cd0bf-96d7-405c-a2a5-1a5bdc4bdb0d
