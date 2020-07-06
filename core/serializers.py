@@ -6,7 +6,7 @@ from .models import Reserva, Hotel, Voo
 class ReservaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reserva
-        fields = ['id', 'user', 'hotel', 'voo', 'cpf', 'primeiro_nome', 'ultimo_nome', 'endereco', 'celular', 'email', 'itens_pacote', 'data_compra', 'preco_total']
+        fields = ['id', 'user', 'hotel', 'voo', 'cpf', 'primeiro_nome', 'email', 'itens_pacote', 'data_compra', 'preco_total']
 
 class HotelSerializer(serializers.ModelSerializer):
     class Meta:
