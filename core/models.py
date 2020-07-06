@@ -14,7 +14,7 @@ class Cliente(models.Model):
         ordering = ['id']
 
 class Reserva(models.Model):
-    customer_id = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='customer_id')
+    customer = models.ForeignKey('auth.User', on_delete=models.CASCADE, verbose_name='customer')
     cpf = models.CharField(max_length=20)
     data_compra = models.DateField(auto_now_add=True)
     preco_total = models.CharField(max_length=32)
