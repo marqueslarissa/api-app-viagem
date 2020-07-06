@@ -28,6 +28,7 @@ class LogoutViewEx(LogoutView):
 
 class ReservaUserView(APIView):
     authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = ReservaSerializer
 
     def get_queryset(self):
@@ -42,6 +43,20 @@ class ReservaUserView(APIView):
         if request.method == 'GET':
             reservas = get_queryset(self)
             serializer = ReservaSerializer(reservas, many=True)
+            return Response(serializer.data)
+    
+    @csrf_exempt
+    def detail(self, request, pk):
+        """
+        Retrieve uma reserva de um usuario.
+        """ 
+        try:
+            reserva = Reserva.objects.get(pk=user)
+        except Reserva.DoesNotExist:
+            return Response(status=404)
+
+        if request.method == 'GET':
+            serializer = ReservaSerializer(reserva)
             return Response(serializer.data)
 
 class ReservaViewSet(viewsets.ModelViewSet):
