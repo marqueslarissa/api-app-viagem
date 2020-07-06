@@ -26,9 +26,7 @@ class TestAuthView(APIView):
 class LogoutViewEx(LogoutView):
     authentication_classes = (TokenAuthentication,)
 
-class ReservaUserView(APIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+class ReservaUserView(viewsets.ModelViewSet):
     serializer_class = ReservaSerializer
 
     def get_queryset(self):
@@ -51,7 +49,7 @@ class ReservaUserView(APIView):
         Retrieve uma reserva de um usuario.
         """ 
         try:
-            reserva = Reserva.objects.get(pk=user)
+            reserva = get_queryset(self)
         except Reserva.DoesNotExist:
             return Response(status=404)
 
