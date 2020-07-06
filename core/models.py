@@ -19,10 +19,7 @@ class Reserva(models.Model):
     data_compra = models.DateField(auto_now_add=True)
     preco_total = models.CharField(max_length=32)
     class Meta:
-        ordering = ['id']
-        constraints = [
-            models.UniqueConstraint(fields=['id', 'customer'], name='reserva_cliente_constraint')
-        ]
+        ordering = ['customer']
 
 class Hotel(models.Model):
     quarto = models.CharField(max_length=255)
