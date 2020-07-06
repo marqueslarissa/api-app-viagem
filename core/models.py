@@ -14,7 +14,6 @@ class Cliente(models.Model):
         ordering = ['id']
 
 class Reserva(models.Model):
-    itens_pacote = models.IntegerField()
     customer = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     data_compra = models.DateField(auto_now_add=True)
     preco_total = models.CharField(max_length=32)
