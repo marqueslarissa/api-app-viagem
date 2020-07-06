@@ -26,7 +26,9 @@ class TestAuthView(APIView):
 class LogoutViewEx(LogoutView):
     authentication_classes = (TokenAuthentication,)
 
-class ReservaUserView(viewsets.ModelViewSet):
+class ReservaUserView(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = ReservaSerializer
 
     def get_queryset(self):
