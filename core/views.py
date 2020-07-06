@@ -27,11 +27,22 @@ class LogoutViewEx(LogoutView):
     authentication_classes = (TokenAuthentication,)
 
 class ReservaUserView(APIView):
+    authentication_classes = (TokenAuthentication,)
     serializer_class = ReservaSerializer
 
     def get_queryset(self):
         id = self.kwargs['id']
         return Reserva.objects.filter(user=id)
+    
+    @csrf_exempt
+    def list(self, request):
+        """
+        Lista todas as reservas de usuarios.
+        """
+        if request.method == 'GET':
+            reservas = get_queryset(self)
+            serializer = ReservaSerializer(reservas, many=True)
+            return Response(serializer.data)
 
 class ReservaViewSet(viewsets.ModelViewSet):
     queryset = Reserva.objects.all()
