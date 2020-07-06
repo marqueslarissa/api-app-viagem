@@ -40,5 +40,4 @@ urlpatterns = [
     path('rest-auth/login/', LoginView.as_view(), name='rest_login', ),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
-    path('reserva/id/<int:id>/', views.ReservaUserView, name='reserva-user-id'),
 ] #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) -- https://docs.djangoproject.com/pt-br/3.0/howto/static-files/
