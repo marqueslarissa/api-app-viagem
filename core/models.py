@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 
 class Cliente(models.Model):
+    customer = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     cpf = models.CharField(max_length=20, unique=True)
     primeiro_nome = models.CharField(max_length=64)
     ultimo_nome = models.CharField(max_length=64)
@@ -18,12 +19,14 @@ class Cliente(models.Model):
         ]
 
 class Reserva(models.Model):
-    customer = models.ForeignKey('auth.User', on_delete=models.CASCADE, verbose_name='customer')
+    cpf = models.ForeignKey('core.Cliente', on_delete=models.CASCADE)
+    hotel = models.ForeignKey('core.Hotel', on_delete=models.CASCADE)
+    voo = models.ForeignKey('core.Voo', on_delete=models.CASCADE)
     itens_pacote = models.CharField(max_length=255)
     data_compra = models.DateField(auto_now_add=True)
     preco_total = models.CharField(max_length=32)
     class Meta:
-        ordering = ['customer']
+        ordering = ['id']
 
 class Hotel(models.Model):
     quarto = models.CharField(max_length=255)
