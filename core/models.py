@@ -10,12 +10,15 @@ class Cliente(models.Model):
     email = models.EmailField()
     detalhes = models.TextField(max_length=255)
     data_cadastro = models.DateField(auto_now_add=True)
+    class Meta:
+        ordering = ['id']
 
 class Reserva(models.Model):
-    client = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     data_compra = models.DateField(auto_now_add=True)
     preco_total = models.CharField(max_length=32)
     data_pagamento = models.DateField(auto_now_add=True)
+    class Meta:
+        ordering = ['id']
 
 class Hotel(models.Model):
     quarto = models.CharField(max_length=255)
@@ -32,6 +35,8 @@ class Hotel(models.Model):
     quantidade_quarto = models.CharField(max_length=255)
     # 1 = voo, 2 = hotel
     tipo = 2
+    class Meta:
+        ordering = ['id']
 
 class Voo(models.Model):
     preco_unitario = models.DecimalField(max_digits=10, decimal_places=2)
@@ -52,3 +57,5 @@ class Voo(models.Model):
     quantidade_passagem = models.IntegerField()
     # 1 = voo, 2 = hotel
     tipo = 1
+    class Meta:
+        ordering = ['id']
