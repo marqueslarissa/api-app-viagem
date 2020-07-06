@@ -14,11 +14,16 @@ class Cliente(models.Model):
         ordering = ['id']
 
 class Reserva(models.Model):
+    itens_pacote = models.PositiveIntegerField()
+    customer = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     data_compra = models.DateField(auto_now_add=True)
     preco_total = models.CharField(max_length=32)
     data_pagamento = models.DateField(auto_now_add=True)
     class Meta:
         ordering = ['id']
+        constraints = [
+            models.UniqueConstraint(fields=['id', 'customer'], name='reserva_constraint')
+        ]
 
 class Hotel(models.Model):
     quarto = models.CharField(max_length=255)
