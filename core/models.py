@@ -12,6 +12,7 @@ class Cliente(models.Model):
     data_cadastro = models.DateField(auto_now_add=True)
 
 class Reserva(models.Model):
+    client = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     data_compra = models.DateField(auto_now_add=True)
     preco_total = models.CharField(max_length=32)
     data_pagamento = models.DateField(auto_now_add=True)
