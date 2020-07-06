@@ -1,3 +1,7 @@
 language: python
 python:
   - "3.7"
+deploy:
+  provider: heroku
+  api_key:
+    secure: "1b09cf98-857d-422b-9d7f-cb5604c89058"
