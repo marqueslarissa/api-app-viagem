@@ -13,9 +13,6 @@ class Cliente(models.Model):
     data_cadastro = models.DateField(auto_now_add=True)
     class Meta:
         ordering = ['id']
-        constraints = [
-            models.UniqueConstraint(fields=['id', 'cpf'], name='cliente_cpf_constraint')
-        ]
 
 class Reserva(models.Model):
     customer = models.ForeignKey('auth.User', on_delete=models.CASCADE, verbose_name='customer')
