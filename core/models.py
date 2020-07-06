@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 
 class Cliente(models.Model):
+    cpf = models.CharField(max_length=20, unique=True)
     primeiro_nome = models.CharField(max_length=64)
     ultimo_nome = models.CharField(max_length=64)
     endereco = models.CharField(max_length=255)
@@ -12,10 +13,12 @@ class Cliente(models.Model):
     data_cadastro = models.DateField(auto_now_add=True)
     class Meta:
         ordering = ['id']
+        constraints = [
+            models.UniqueConstraint(fields=['id', 'cpf'], name='cliente_cpf_constraint')
+        ]
 
 class Reserva(models.Model):
     customer = models.ForeignKey('auth.User', on_delete=models.CASCADE, verbose_name='customer')
-    cpf = models.CharField(max_length=20)
     data_compra = models.DateField(auto_now_add=True)
     preco_total = models.CharField(max_length=32)
     class Meta:
