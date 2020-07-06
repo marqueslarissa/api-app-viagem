@@ -1,30 +1,19 @@
 from django.db import models
 import uuid
 
-class Cliente(models.Model):
-    customer = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+class Reserva(models.Model):
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    hotel = models.ForeignKey('core.Hotel', on_delete=models.CASCADE)
+    voo = models.ForeignKey('core.Voo', on_delete=models.CASCADE)
     cpf = models.CharField(max_length=20, unique=True)
     primeiro_nome = models.CharField(max_length=64)
     ultimo_nome = models.CharField(max_length=64)
     endereco = models.CharField(max_length=255)
-    telefone = models.CharField(max_length=32)
     celular = models.CharField(max_length=32)
     email = models.EmailField()
-    detalhes = models.TextField(max_length=255)
-    data_cadastro = models.DateField(auto_now_add=True)
-    class Meta:
-        ordering = ['id']
-        constraints = [
-            models.UniqueConstraint(fields=['id', 'cpf'], name='cliente_cpf_constraint')
-        ]
-
-class Reserva(models.Model):
-    cpf = models.ForeignKey('core.Cliente', on_delete=models.CASCADE)
-    hotel = models.ForeignKey('core.Hotel', on_delete=models.CASCADE)
-    voo = models.ForeignKey('core.Voo', on_delete=models.CASCADE)
     itens_pacote = models.CharField(max_length=255)
     data_compra = models.DateField(auto_now_add=True)
-    preco_total = models.CharField(max_length=32)
+    preco_total = models.DecimalField(max_digits=10, decimal_places=2)
     class Meta:
         ordering = ['id']
 

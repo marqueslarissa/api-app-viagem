@@ -1,16 +1,12 @@
 from rest_framework import serializers
-from .models import Cliente, Reserva, Hotel, Voo 
+from .models import Reserva, Hotel, Voo 
 
 # Serializers define the API representation. Template.
-class ClienteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Cliente
-        fields = ['id', 'customer', 'cpf', 'primeiro_nome', 'ultimo_nome', 'endereco', 'telefone', 'celular', 'email', 'detalhes', 'data_cadastro']
 
 class ReservaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reserva
-        fields = ['id', 'cpf', 'hotel', 'voo', 'itens_pacote', 'data_compra', 'preco_total']
+        fields = ['id', 'user', 'hotel', 'voo', 'cpf', 'primeiro_nome', 'ultimo_nome', 'endereco', 'celular', 'email', 'itens_pacote', 'data_compra', 'preco_total']
 
 class HotelSerializer(serializers.ModelSerializer):
     class Meta:
